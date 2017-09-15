@@ -1,0 +1,16 @@
+.comment{
+	display:none;
+}
+
+ul{
+	list-style: none;
+	display:block;
+}
+
+.single{
+	margin:5px;
+}
+
+.col{
+	width:50%;
+}

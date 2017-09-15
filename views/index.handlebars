@@ -1,0 +1,67 @@
+ {{!-- header --}}
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-3">Full Stack Jobs in Los Angeles</h1>
+      <button type="submit" id="scrape">Scrape</button>
+    </div>
+  </div>
+  {{!-- populate unsaved article --}}
+  <div class="container">
+    <div class="row" id="jobs">
+      <div class="col col-lg-6">
+        <ul>
+          {{#each jobs}} {{#unless this.isSaved}}
+          <li class="single">
+            {{!--
+            <li>
+             --}} {{!-- {{this.title}} --}}
+             <ul>
+              <li>Title:{{this.title}}</li>
+              <li><a href={{this.link}}>Link</a></li>
+              <li>Summary:{{this.summary}}</li>
+              <li>
+              	<form action="/{{this.id}}?_method=PUT" method="POST">
+                <input type="hidden" name="saved" value="true">
+                <button type="submit">Save</button>
+              </form>
+              </li>
+              {{> jobs/delete}}
+                 
+                </ul>
+            </li>
+            {{/unless}} {{/each}}
+        </ul>
+      </div>
+
+      {{!-- saved article --}}
+      <div class="col col-lg-6">
+        <ul>
+          {{#each jobs}} {{#if this.isSaved}}
+          <li class="single">
+          	<ul>
+
+            <li>Title:{{this.title}}</li>
+            <li><a href={{this.link}}>Link</a></li>
+            <li>Summary:{{this.summary}}</li>
+            <li>
+	            <button type="button" class="dropDown" data-id={{this.id}} onclick="getId(this)">leave a note!</button>
+	            <div id="notes">
+	             </div>
+	           {{!--  <form class="comment" id="popup{{this.id}}">
+	              <div class="form-group">
+	                <label for="inputCommentBody">Your Notes</label>
+	                <input type="text" class="form-control" name="body" id="noteMessage" required>
+	              </div> --}}
+	              {{!-- <button type="button" data-id={{this.id}} class="submit" onclick="myFunc($(this).data('id'))">submit</button> --}}
+	            {{!-- </form> --}}
+             </li>
+             {{> jobs/delete}}
+           </ul>
+          </li>
+          {{/if}} {{/each}}
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
