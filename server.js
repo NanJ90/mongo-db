@@ -37,7 +37,7 @@ app.use(methodOverride("_method"));
 var databaseUri = "mongodb://localhost/MongoDB";
 // MongoDB Configuration configuration (Change this URL to your own DB)
 if (process.env.MONGODB_URI) {
-    mongoose.connect("process.env.mongodb://<dbuser>:<dbpassword>@ds135364.mlab.com:35364/heroku_0d1dmvrj");
+    mongoose.connect(process.env.MONGODB_URI);
 } else {
   mongoose.connect(databaseUri);
 }
