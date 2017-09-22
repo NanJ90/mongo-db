@@ -34,7 +34,14 @@ app.use(express.static("./public"));
 // Override with Post 
 app.use(methodOverride("_method"));
 // Database configuration with mongoose
-mongoose.connect("mongodb://heroku_0d1dmvrj:rc05hgk8pdq01264ivs2n6vpvd@ds135364.mlab.com:35364/heroku_0d1dmvrj");
+var databaseUri = "mongodb://localhost/MongoDB";
+// MongoDB Configuration configuration (Change this URL to your own DB)
+if (process.env.MONGODB_URI) {
+    mongoose.connect("process.env.mongodb://<dbuser>:<dbpassword>@ds135364.mlab.com:35364/heroku_0d1dmvrj");
+} else {
+  mongoose.connect(databaseUri);
+}
+
 var db = mongoose.connection;
 
 // Show any mongoose errors
